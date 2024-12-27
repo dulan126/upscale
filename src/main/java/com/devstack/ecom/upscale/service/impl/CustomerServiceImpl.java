@@ -18,6 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void create(RequestCustomerdto dto) {
+        System.out.println(dto.isActive());
         Customer customer = Customer.builder()
                 .propertyId(UUID.randomUUID().toString())
                 .name(dto.getName())
