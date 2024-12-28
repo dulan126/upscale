@@ -45,12 +45,16 @@ public class CustomerController {
     }
 
     @GetMapping("/list")
-    public String findAll(
+    public ResponseEntity<StandardResponse> findAll(
                 @RequestParam String searchText,
                 @RequestParam int page,
                 @RequestParam int size
-        )
-        {return "findAll()";}
+        ){
+
+        return new ResponseEntity<>(
+                new StandardResponse(201,"Customer data fetched...",customerService.findAll(searchText, page, size)),
+                HttpStatus.CREATED
+        );}
 
 
     @GetMapping()
@@ -59,8 +63,12 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable String id){
-        return "delete()";
+    public ResponseEntity<StandardResponse> delete(@PathVariable String id){
+        customerService.delete(id);
+        return new ResponseEntity<>(
+                new StandardResponse(201,"Customer data deleted!..",null),
+                HttpStatus.CREATED
+        );
     }
 
 
