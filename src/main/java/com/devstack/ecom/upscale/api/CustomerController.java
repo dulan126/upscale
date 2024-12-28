@@ -29,14 +29,19 @@ public class CustomerController {
     public ResponseEntity<StandardResponse> get(@PathVariable String id){
         //find data // http://localhost:8001/api/v1/customers/1234 [GET]
         return new ResponseEntity<>(
-                new StandardResponse(201,"Customer was created!..",customerService.findById(id)),
-                HttpStatus.CREATED
+                new StandardResponse(200,"Customer was created!..",customerService.findById(id)),
+                HttpStatus.OK
+
         );
     }
 
-    @PutMapping()
-    public String update(){
-        return "update()";
+    @PutMapping("/{id}")
+    public ResponseEntity<StandardResponse> update(@PathVariable String id, @RequestBody RequestCustomerdto dto){
+        customerService.update(id,dto);
+        return new ResponseEntity<>(
+                new StandardResponse(201,"Customer data changed!..",null),
+                HttpStatus.CREATED
+        );
     }
 
     @GetMapping("/list")

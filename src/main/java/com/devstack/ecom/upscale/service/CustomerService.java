@@ -6,6 +6,7 @@ import com.devstack.ecom.upscale.dto.response.ResponseCustomerDto;
 public interface CustomerService {
     public void create(RequestCustomerdto dto);
     public ResponseCustomerDto findById(String id);
+    public void update(String id, RequestCustomerdto dto);
 }
 
 
