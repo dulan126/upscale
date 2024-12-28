@@ -26,9 +26,12 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public String get(@PathVariable String id){
+    public ResponseEntity<StandardResponse> get(@PathVariable String id){
         //find data // http://localhost:8001/api/v1/customers/1234 [GET]
-        return "get()";
+        return new ResponseEntity<>(
+                new StandardResponse(201,"Customer was created!..",customerService.findById(id)),
+                HttpStatus.CREATED
+        );
     }
 
     @PutMapping()
