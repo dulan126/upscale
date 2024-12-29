@@ -52,8 +52,8 @@ public class CustomerController {
         ){
 
         return new ResponseEntity<>(
-                new StandardResponse(201,"Customer data fetched...",customerService.findAll(searchText, page, size)),
-                HttpStatus.CREATED
+                new StandardResponse(200,"Customer data fetched...",customerService.findAll(searchText, page, size)),
+                HttpStatus.OK
         );}
 
 
@@ -66,8 +66,8 @@ public class CustomerController {
     public ResponseEntity<StandardResponse> delete(@PathVariable String id){
         customerService.delete(id);
         return new ResponseEntity<>(
-                new StandardResponse(201,"Customer data deleted!..",null),
-                HttpStatus.CREATED
+                new StandardResponse(204,"Customer data deleted!..",null),
+                HttpStatus.NO_CONTENT
         );
     }
 
